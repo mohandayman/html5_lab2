@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>change background</button>
+    <script>
+      let webWorker = new Worker("Task3WorkerScript.js");
+      let chg_bg = document.querySelector("button");
+      webWorker.onmessage = function (messege) {
+        console.log(messege);
+        console.log(messege.data);
+        alert(messege.data);
+      };
+
+      webWorker.postMessage("");
+      
+      chg_bg.onclick = function () {
+        if (document.body.style.background !== "green") {
+          document.body.style.background = "green";
+        } else {
+          document.body.style.background = "yellow";
+        }
+      };
+    </script>
+  </body>
+</html>
